@@ -1,68 +1,29 @@
-import arcade
-
-from misc import button, scaler
-
-SCREEN_WIDTH = 200
-SCREEN_HEIGHT = 200
-
-
-class Daily(arcade.Window):
-
-    def __init__(self, width, height, title):
-        super().__init__(width, height, title, resizable=True)
-        self.width = int(width)
-        self.height = int(height)
-        self.button = button.Button
-        self.scaler = scaler
-        self.button_list = []
-
-    def setup(self):
-        pass
-
-    def on_draw(self):
-        self.clear(arcade.color.ASH_GREY)
-        button = self.button(
-            self.width // 2,
-            self.height // 2,
-            5,
-            5,
-            self.width,
-            self.height,
-        ).create_button(
-            "Begin",
-            (255, 255, 255),
-            (0, 0, 0),
-            20,
-        )
-        self.button_list.append(button)
-
-    def update(self, delta_time):
-        pass
-
-    def on_key_press(self, key, key_modifiers):
-        pass
-
-    def on_key_release(self, key, key_modifiers):
-        pass
-
-    def on_mouse_motion(self, x, y, delta_x, delta_y):
-        pass
-
-    def on_mouse_press(self, x, y, button, key_modifiers):
-        pass
-
-    def on_mouse_release(self, x, y, button, key_modifiers):
-        pass
-
-    def on_resize(self, width, height):
-        return super().on_resize(width, height)
+import kivy
+from kivy.app import App
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.anchorlayout import AnchorLayout
+from kivy.uix.label import Label
+from kivy.uix.button import Button
+from kivy.graphics import Color, Rectangle
 
 
-def main():
-    app = Daily(SCREEN_WIDTH, SCREEN_HEIGHT, "Daily")
-    app.setup()
-    arcade.run()
+class Opener(AnchorLayout):
+    def __init__(self, **kwargs):
+        super(Opener, self).__init__(**kwargs)
+        self.cols = 2
+        self.rows = 2
+        self.btn = Button(text="Start")
+        AnchorLayout.anchor_x = "center"
+        AnchorLayout.anchor_y = "center"
+        AnchorLayout.padding = [200, 200, 200, 200]
+        self.add_widget(self.btn)
+
+
+class Daily(App):
+    def build(self):
+        current_layout = Opener()
+        return current_layout
 
 
 if __name__ == "__main__":
-    main()
+    Daily().run()
