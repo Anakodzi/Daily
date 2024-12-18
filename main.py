@@ -14,24 +14,27 @@ class Daily(arcade.Window):
         self.height = int(height)
         self.button = button.Button
         self.scaler = scaler
+        self.button_list = []
 
     def setup(self):
         pass
 
     def on_draw(self):
         self.clear(arcade.color.ASH_GREY)
-        self.button(
-            "Begin",
+        button = self.button(
             self.width // 2,
             self.height // 2,
             5,
             5,
+            self.width,
+            self.height,
+        ).create_button(
+            "Begin",
             (255, 255, 255),
             (0, 0, 0),
             20,
-            self.width,
-            self.height,
-        ).create_button()
+        )
+        self.button_list.append(button)
 
     def update(self, delta_time):
         pass
